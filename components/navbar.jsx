@@ -8,7 +8,7 @@ const Navbar = () => {
 	const [colorMode, setColorMode] = useColorMode();
 	return (
 		<>
-			<header className='px-6 pt-7 pb-9 min-w-[100vw]'>
+			<header className='px-10 pt-7 pb-9 min-w-[100vw]'>
 				<div className='flex flex-row justify-between items-center gap-2'>
 					<span className='text-navyBlue dark:text-white font-bold text-[1.625rem] '>
 						devfinder
