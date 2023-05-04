@@ -37,10 +37,10 @@ const MainApp = () => {
 	};
 
 	return (
-		<main className='flex flex-col gap-4 items-center mx-8'>
+		<main className='flex flex-col gap-4 items-center mx-8 md:mx-[90px]'>
 			<div className='flex flex-col items-center min-w-full'>
 				<SearchField
-					className='flex flex-row justify-between pl-4 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px]'
+					className='flex flex-row justify-between pl-4 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px] min-w-full'
 					onClear={() => setUserName('')}
 					onSubmit={handleButtonClick}
 					onFocus={handleInputFocus}
@@ -51,9 +51,8 @@ const MainApp = () => {
 						type='search'
 						value={userName}
 						onChange={(e) => setUserName(e.target.value)}
-						placeholder=' GitHub Username…'
+						placeholder='GitHub Username…'
 					/>
-
 					<Button
 						className='bg-lightBlue hover:bg-hoverBtn text-white text-[14px] py-2 px-4 rounded-xl my-2'
 						onPress={handleButtonClick}
@@ -65,18 +64,18 @@ const MainApp = () => {
 			</div>
 
 			{user && (
-				<div className='card px-6 flex flex-col rounded-2xl border-none bg-whiteGray dark:bg-navyBlue text-darkBlue dark:text-white mb-20 shadow-primaryShadow dark:shadow-none min-w-full'>
-					<div className='card-body pb-12 px-0'>
-						<div className='flex flex-row gap-4 items-center'>
+				<div className='card px-6 md:px-10 flex flex-col rounded-2xl border-none bg-whiteGray dark:bg-navyBlue text-darkBlue dark:text-white mb-20 md:mb-[236px] shadow-primaryShadow dark:shadow-none min-w-full'>
+					<div className='card-body pb-12 px-0 pt-8 md:pt-10 md:pb-10'>
+						<div className='flex flex-row gap-4 md:gap-5 items-center'>
 							<div className='avatar'>
-								<div className='w-[70px] rounded-full'>
+								<div className='w-[70px] md:w-[117px] rounded-full'>
 									<img src={user.avatar_url} alt='avatar' />
 								</div>
 							</div>
 
 							<div className='flex flex-col gap-2'>
 								{user.name !== null ? (
-									<h1 className='card-title text-[1rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight'>
+									<h1 className='card-title text-[1rem] md:text-[1.625rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight'>
 										{user.name}
 									</h1>
 								) : (
@@ -86,17 +85,17 @@ const MainApp = () => {
 								)}
 
 								<Link
-									className='text-[13px] text-lightBlue tracking-tight hover:text-hoverBtn'
+									className='text-[13px] md:text-[1rem] text-lightBlue tracking-tight hover:text-hoverBtn'
 									href={`https://github.com/${user.login}`}
 									target='blank'
 								>{`@${user.login}`}</Link>
 
-								<p className='text-blueGray dark:text-white text-[13px]'>{`Joined ${date}`}</p>
+								<p className='text-blueGray dark:text-white text-[13px] md:text-[15px]'>{`Joined ${date}`}</p>
 							</div>
 						</div>
 
 						{user.bio !== null ? (
-							<p className='text-[13px] mt-8 leading-loose tracking-normal'>
+							<p className='text-[13px] md:text-[15px] mt-8 leading-loose tracking-normal'>
 								{user.bio}
 							</p>
 						) : (
@@ -106,7 +105,7 @@ const MainApp = () => {
 						)}
 
 						<div className='flex flex-row justify-center rounded-lg bg-lightGray dark:bg-black mt-6 py-4'>
-							<ul className='flex flex-row gap-6 text-center'>
+							<ul className='flex flex-row justify-center md:justify-between gap-6 text-center min-w-full md:pl-8 md:pr-[6rem]'>
 								<li className='flex flex-col'>
 									<p>Repos</p>
 									<p>{user.public_repos}</p>
@@ -122,7 +121,7 @@ const MainApp = () => {
 							</ul>
 						</div>
 
-						<footer className='card-footer-container mt-6 flex flex-col gap-4'>
+						<footer className='card-footer-container mt-6 flex flex-col md:grid md:grid-cols-2 gap-4'>
 							{user.location !== null ? (
 								<div className='flex flex-row gap-4 items-center w-full'>
 									<svg
@@ -149,14 +148,14 @@ const MainApp = () => {
 											fill='current'
 										/>
 									</svg>
-									<p className='text-[13px] text-darkBlue dark:text-white opacity-50'>
+									<p className='text-[13px] md:text-[15px] text-darkBlue dark:text-white opacity-50'>
 										Not Available
 									</p>
 								</div>
 							)}
 
 							{user.blog !== '' ? (
-								<div className='flex flex-row gap-3 items-center w-full hover:underline'>
+								<div className='flex flex-row gap-3 items-center w-full hover:underline md:col-start-1 md:row-start-2'>
 									<svg
 										height='20'
 										width='20'
