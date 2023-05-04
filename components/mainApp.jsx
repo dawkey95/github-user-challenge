@@ -25,7 +25,6 @@ const MainApp = () => {
 
 			setDate(formattedDate);
 			setUser(response.data);
-			console.log(user);
 		} catch (error) {
 			setUser(null);
 			setError('No results');
@@ -41,27 +40,28 @@ const MainApp = () => {
 		<main className='flex flex-col gap-4 items-center mx-8'>
 			<div className='flex flex-col items-center min-w-full'>
 				<SearchField
-					className='flex flex-row gap-2 justify-between pl-4 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px]'
+					className='flex flex-row justify-between pl-4 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px]'
 					onClear={() => setUserName('')}
 					onSubmit={handleButtonClick}
 					onFocus={handleInputFocus}
 				>
 					<Image src={'/assets/icon-search.svg'} width={20} height={20} alt='' />
 					<Input
-						className='bg-inherit dark:bg-inherit text-darkBlue dark:text-white placeholder-darkBlue dark:placeholder-white focus:outline-none w-[80%]'
+						className='bg-inherit placeholder:text-darkBlue dark:bg-inherit text-darkBlue dark:text-white dark:placeholder-white focus:outline-none w-[80%] mr-4 ml-2'
 						type='search'
 						value={userName}
 						onChange={(e) => setUserName(e.target.value)}
-						placeholder=' GitHub username…'
+						placeholder=' GitHub Username…'
 					/>
+
 					<Button
-						className='bg-lightBlue text-white text-[14px] py-2 px-4 rounded-xl my-2'
+						className='bg-lightBlue hover:bg-hoverBtn text-white text-[14px] py-2 px-4 rounded-xl my-2'
 						onPress={handleButtonClick}
 					>
 						Search
 					</Button>
 				</SearchField>
-				{error && <p className='pt-2 text-[0.75rem] text-red-500'>{error}</p>}
+				{error && <p className='pt-2 text-[0.75rem] text-red-500 mr-2'>{error}</p>}
 			</div>
 
 			{user && (
@@ -75,12 +75,18 @@ const MainApp = () => {
 							</div>
 
 							<div className='flex flex-col gap-2'>
-								<h1 className='card-title text-[1rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight'>
-									{user.name}
-								</h1>
+								{user.name !== null ? (
+									<h1 className='card-title text-[1rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight'>
+										{user.name}
+									</h1>
+								) : (
+									<h1 className='card-title text-[1rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight opacity-50'>
+										-
+									</h1>
+								)}
 
 								<Link
-									className='text-[13px] text-lightBlue tracking-tight'
+									className='text-[13px] text-lightBlue tracking-tight hover:text-hoverBtn'
 									href={`https://github.com/${user.login}`}
 									target='blank'
 								>{`@${user.login}`}</Link>
@@ -89,9 +95,15 @@ const MainApp = () => {
 							</div>
 						</div>
 
-						<p className='text-[13px] mt-8 leading-loose tracking-normal'>
-							{user.bio}
-						</p>
+						{user.bio !== null ? (
+							<p className='text-[13px] mt-8 leading-loose tracking-normal'>
+								{user.bio}
+							</p>
+						) : (
+							<p className='text-[13px] mt-8 leading-loose tracking-normal opacity-50'>
+								This profile has no bio
+							</p>
+						)}
 
 						<div className='flex flex-row justify-center rounded-lg bg-lightGray dark:bg-black mt-6 py-4'>
 							<ul className='flex flex-row gap-6 text-center'>
@@ -144,7 +156,7 @@ const MainApp = () => {
 							)}
 
 							{user.blog !== '' ? (
-								<div className='flex flex-row gap-3 items-center w-full'>
+								<div className='flex flex-row gap-3 items-center w-full hover:underline'>
 									<svg
 										height='20'
 										width='20'
@@ -178,7 +190,7 @@ const MainApp = () => {
 							)}
 
 							{user.twitter_username !== null ? (
-								<div className='flex flex-row gap-4 items-center w-full text-grey'>
+								<div className='flex flex-row gap-4 items-center w-full text-grey hover:underline'>
 									<svg
 										height='18'
 										width='20'

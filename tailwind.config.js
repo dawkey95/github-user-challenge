@@ -18,6 +18,7 @@ module.exports = {
 				white: 'var(--white)',
 				black: 'var(--black)',
 				navyBlue: 'var(--navy-blue)',
+				hoverBtn: 'var(--hover-btn)',
 			},
 
 			fontFamily: {
