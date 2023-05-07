@@ -41,17 +41,17 @@ const MainApp = () => {
 			<div className='flex flex-col items-center min-w-[100vw] px-6 md:px-[97px] lg:px-[355px]'>
 				<SearchField
 					className='relative flex flex-row justify-between pl-4 lg:pl-8 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px] lg:text-[18px] min-w-full'
-					onClear={() => setUserName('')}
+					onClear={() => handleInputFocus()}
 					onSubmit={handleButtonClick}
 					onFocus={handleInputFocus}
 				>
 					<Image src={'/assets/icon-search.svg'} width={20} height={20} alt='' />
 					<Input
-						className='bg-inherit placeholder:text-darkBlue placeholder:opacity-75 dark:bg-inherit text-darkBlue dark:text-white dark:placeholder-white focus:outline-none w-[80%] mr-4 ml-2'
+						className='bg-inherit placeholder:text-darkBlue placeholder:opacity-75 placeholder:tracking-tighter placeholder:text-[0.77rem] dark:bg-inherit text-darkBlue dark:text-white dark:placeholder-white focus:outline-none w-[80%] mr-4 ml-2'
 						type='search'
 						value={userName}
 						onChange={(e) => setUserName(e.target.value)}
-						placeholder='GitHub Username…'
+						placeholder={error !== '' ? '' : 'Search GitHub username…'}
 					/>
 					{error && (
 						<p className='absolute right-[100px] text-[0.75rem] text-red-500 mr-2'>
@@ -65,7 +65,6 @@ const MainApp = () => {
 						Search
 					</Button>
 				</SearchField>
-				{/* {error && <p className='pt-2 text-[0.75rem] text-red-500 mr-2'>{error}</p>} */}
 			</div>
 
 			{user && (
