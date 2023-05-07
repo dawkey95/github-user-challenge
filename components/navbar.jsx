@@ -10,9 +10,9 @@ const Navbar = () => {
 		<>
 			<header className='mt-7 pb-9 min-w-full md:mt-[140px] lg:mt-[9rem]'>
 				<div className='flex flex-row justify-between items-center gap-2'>
-					<span className='text-navyBlue dark:text-white font-bold text-[1.625rem] '>
+					<h1 className='text-navyBlue dark:text-white font-bold text-[1.625rem] '>
 						devfinder
-					</span>
+					</h1>
 					<Button
 						className='flex flex-row font-bold tracking-[2.5px] text-[0.8125rem] text-darkBlue fill-darkBlue hover:fill-navyBlue  hover:text-navyBlue dark:text-white items-center gap-4 outline-none'
 						onPress={() => {

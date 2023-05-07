@@ -80,13 +80,13 @@ const MainApp = () => {
 
 								<div className='flex flex-col gap-2'>
 									{user.name !== null ? (
-										<h1 className='card-title text-[1rem] md:text-[1.625rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight'>
+										<h2 className='card-title text-[1rem] md:text-[1.625rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight'>
 											{user.name}
-										</h1>
+										</h2>
 									) : (
-										<h1 className='card-title text-[1rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight opacity-50'>
+										<h2 className='card-title text-[1rem] text-eerieGray dark:text-white font-bold leading-none tracking-tight opacity-50'>
 											-
-										</h1>
+										</h2>
 									)}
 
 									<Link
