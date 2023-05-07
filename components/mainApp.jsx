@@ -37,7 +37,7 @@ const MainApp = () => {
 	};
 
 	return (
-		<main className='flex flex-col gap-4 items-center min-w-full'>
+		<section className='flex flex-col gap-4 items-center min-w-full'>
 			<div className='flex flex-col items-center min-w-full'>
 				<SearchField
 					className='relative flex flex-row justify-between pl-4 lg:pl-8 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px] lg:text-[18px] min-w-full'
@@ -263,7 +263,7 @@ const MainApp = () => {
 					</div>
 				</div>
 			)}
-		</main>
+		</section>
 	);
 };
 
