@@ -37,8 +37,8 @@ const MainApp = () => {
 	};
 
 	return (
-		<main className='flex flex-col gap-4 items-center mx-8 md:mx-[90px] lg:mx-0'>
-			<div className='flex flex-col items-center min-w-full px-6 md:px-[97px] lg:px-[355px]'>
+		<main className='flex flex-col gap-4 items-center min-w-full'>
+			<div className='flex flex-col items-center min-w-full'>
 				<SearchField
 					className='relative flex flex-row justify-between pl-4 lg:pl-8 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px] lg:text-[18px] min-w-full'
 					onClear={() => handleInputFocus()}
@@ -69,7 +69,7 @@ const MainApp = () => {
 
 			{user && (
 				<div className='min-w-full'>
-					<div className='card px-6 md:px-10 flex flex-col rounded-2xl border-none bg-whiteGray dark:bg-navyBlue text-darkBlue dark:text-white mb-20 md:mb-[236px] shadow-primaryShadow dark:shadow-none mx-6 md:mx-[97px] lg:mx-[355px] '>
+					<div className='card px-6 md:px-10 flex flex-col rounded-2xl border-none bg-whiteGray dark:bg-navyBlue text-darkBlue dark:text-white mb-20 md:mb-[236px] shadow-primaryShadow dark:shadow-none'>
 						<div className='card-body pb-12 px-0 pt-8 md:pt-10 md:pb-10'>
 							<div className='flex flex-row gap-4 md:gap-5 items-center'>
 								<div className='avatar'>
