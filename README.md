@@ -1,22 +1,25 @@
-# Frontend Mentor - GitHub user search app
+# Frontend Mentor - GitHub user search app solution
 
-![Design preview for the GitHub user search app coding challenge](./preview.jpg)
+This is a solution to the [Github User](https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6/hub). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for purchasing this premium Frontend Mentor coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects. These premium challenges are perfect portfolio pieces, so please feel free to use what you create in your portfolio to show others.
+## Overview
 
-**To do this challenge, you need a good understanding of HTML, CSS, and JavaScript.**
+### The challenge
 
-## The challenge
-
-Your challenge is to build out this GitHub user search app using the [GitHub users API](https://docs.github.com/en/rest/reference/users#get-a-user) and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
+Users should be able to:
 
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
@@ -25,79 +28,127 @@ Your users should be able to:
 - Switch between light and dark themes
 - **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS.
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+### Screenshot
 
-The GitHub users API endpoint is `https://api.github.com/users/:username`. So, if you wanted to search for the Octocat profile, you'd be able to make a request to `https://api.github.com/users/octocat`.
+![](./public/assets/GitHub%20User.png)
 
-### Expected behaviour
+### Links
 
-- On first load, show the profile information for Octocat.
-- Display an error message (as shown in the design) if no user is found when a new search is made.
-- If a GitHub user hasn't added their name, show their username where the name would be without the `@` symbol and again below with the `@` symbol.
-- If a GitHub user's bio is empty, show the text "This profile has no bio" with transparency added (as shown in the design). The lorem ipsum text in the designs shows how the bio should look when it is present.
-- If any of the location, website, twitter, or company properties are empty, show the text "Not Available" with transparency added (as shown in the design).
-- Website, twitter, and company information should all be links to those resaources. For the company link, it should remove the `@` symbol and link to the company page on GitHub. For Octocat, with `@github` being returned for the company, this would lead to a URL of `https://github.com/github`.
+- Solution URL: [Github Solution](https://github.com/dawkey95/github-user-challenge)
+- Live Site URL: [Live Site](https://dk-github-user.vercel.app/)
 
-## Where to find everything
+## My process
 
-Your task is to build out the project to the design file provided. We provide both Sketch and Figma versions of the design, so you can choose which tool you prefer to use. You can download the design file on the platform. **Please be sure not to share them with anyone else.** The design download comes with a `README.md` file as well to help you get set up.
+### Built with
 
-All the required assets for this project are in the `/assets` folder. The assets are already exported for the correct screen size and optimized. Some images are reusable at multiple screen sizes. So if you don't see an image in a specific folder, it will typically be in another folder for that page.
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Next.js](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - For styles
+- [DaisyUI](https://daisyui.com/) - Components for Tailwind CSS
+- [React-Aria](https://react-spectrum.adobe.com/react-aria/)
 
-The design system in the design file will give you more information about the various colors, fonts, and styles used in this project.
+### What I learned
 
-## Building your project
+I really enjoyed this project. First time working with API's in a long while and felt like I was actually creating a web app. I also learnt how to use React-Aria to create accessible components although I will be switching to RadixUI in the future for accesible components inconjuction with DaisyUI. I also learnt how to0 use Axios to fetch data from the Github API.
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+```js
+const handleButtonClick = async () => {
+	try {
+		const response = await axios.get(`https://api.github.com/users/${userName}`);
 
-1. Separate the `starter-code` from the rest of this project and rename it to something meaningful for you. Initialize the codebase as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/). **⚠️ IMPORTANT ⚠️: There are already a couple of `.gitignore` files in this project. Please do not remove them or change the content of the files. If you create a brand new project, please use the `.gitignore` files provided in your new codebase. This is to avoid the accidental upload of the design files to GitHub. With these premium challenges, please be sure not to share the design files in your GitHub repo. Thanks!**
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+		const rawDate = response.data.created_at;
+		const dateObj = new Date(rawDate);
+		const day = dateObj.getDate();
+		const month = dateObj.toLocaleString('default', { month: 'short' });
+		const year = dateObj.getFullYear();
+		const formattedDate = `${day} ${month} ${year}`;
 
-## Deploying your project
+		setDate(formattedDate);
+		setUser(response.data);
+	} catch (error) {
+		setUser(null);
+		setError('No results');
+	}
+};
+```
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+Also learnt how to use the ternary operator to conditionally render a placeholder in the input field.
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+```js
+placeholder={error !== '' ? '' : 'Search GitHub username…'}
+```
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+In order to create a dark/light mode switch for my tailwind css I created two custom hooks:
 
-## Create a custom `README.md`
+```js
+'use client';
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+import { useState, useEffect } from 'react';
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+function useLocalStorage(key, initialValue) {
+	const [value, setValue] = useState(() => {
+		try {
+			// Get from local storage by key
+			const item = window.localStorage.getItem(key);
+			// Parse stored json or if none return initialValue
+			return item ? JSON.parse(item) : initialValue;
+		} catch (error) {
+			// If error also return initialValue
+			console.log(error);
+			return initialValue;
+		}
+	});
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+	useEffect(() => {
+		try {
+			// Allow value to be a function so we have same API as useState
+			const valueToStore =
+				typeof storedValue === 'function' ? storedValue(storedValue) : storedValue;
+			// Save state
+			window.localStorage.setItem(key, JSON.stringify(valueToStore));
+		} catch (error) {
+			// A more advanced implementation would handle the error case
+			console.log(error);
+		}
+	}, [key, value]);
 
-## Submitting your solution
+	return [value, setValue];
+}
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+export default useLocalStorage;
+```
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+Then using the `useLocalStorage` hook I then created a custom hook to set the color mode of the app.
 
-**⚠️ IMPORTANT ⚠️: With these premium challenges, please be sure not to upload the design files to GitHub when you're submitting to the platform and sharing it around. If you've created a brand new project, the easiest way to do that is to copy across the `.gitignore` provided in this starter project.**
+```js
+import { useEffect } from 'react';
+import useLocalStorage from './useLocalStorage';
 
-## Sharing your solution
+function useColorMode() {
+	const [colorMode, setColorMode] = useLocalStorage('color-mode', 'dark');
 
-There are multiple places you can share your solution:
+	useEffect(() => {
+		const classname = 'dark';
+		const bodyClasses = window.document.body.classList;
 
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+		colorMode === 'dark'
+			? bodyClasses.add(classname)
+			: bodyClasses.remove(classname);
+	}, [colorMode]);
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+	return [colorMode, setColorMode];
+}
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+export default useColorMode;
+```
 
-## Got feedback for us?
+### Useful resources
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+- [ChatpGPT] - Invaluable resource for learning React and Next.js
 
-**Have fun building!** 🚀
+## Author
+
+- Website - [Dawid Keyser](https://dk-personal.netlify.app/)
+- Frontend Mentor - [@dawkey95](https://www.frontendmentor.io/profile/dawkey95)
+- Twitter - [@dawidkeyser95](https://twitter.com/dawidkeyser95)
