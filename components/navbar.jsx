@@ -8,7 +8,7 @@ const Navbar = () => {
 	const [colorMode, setColorMode] = useColorMode();
 	return (
 		<>
-			<header className='px-7 mt-7 pb-9 min-w-[100vw] md:mt-[140px] md:px-[97px] xl:mt-[144px] xl:px-[355px]'>
+			<header className='mt-7 pb-9 min-w-full md:mt-[140px] lg:mt-[9rem] px-12 md:px-[12.125rem] lg:px-[22.1875rem]'>
 				<div className='flex flex-row justify-between items-center gap-2'>
 					<span className='text-navyBlue dark:text-white font-bold text-[1.625rem] '>
 						devfinder
@@ -39,3 +39,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// px-6 md:px-[97px] lg:px-[355px]
