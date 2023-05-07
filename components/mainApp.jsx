@@ -37,22 +37,27 @@ const MainApp = () => {
 	};
 
 	return (
-		<main className='flex flex-col gap-4 items-center mx-8 md:mx-[90px] xl:mx-0'>
-			<div className='flex flex-col items-center min-w-[100vw] px-6 md:px-[97px] xl:px-[355px]'>
+		<main className='flex flex-col gap-4 items-center mx-8 md:mx-[90px] lg:mx-0'>
+			<div className='flex flex-col items-center min-w-[100vw] px-6 md:px-[97px] lg:px-[355px]'>
 				<SearchField
-					className='flex flex-row justify-between pl-4 xl:pl-8 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px] xl:text-[18px] min-w-full'
+					className='relative flex flex-row justify-between pl-4 lg:pl-8 pr-2 rounded-2xl bg-whiteGray dark:bg-navyBlue shadow-primaryShadow dark:shadow-none items-center text-[13px] lg:text-[18px] min-w-full'
 					onClear={() => setUserName('')}
 					onSubmit={handleButtonClick}
 					onFocus={handleInputFocus}
 				>
 					<Image src={'/assets/icon-search.svg'} width={20} height={20} alt='' />
 					<Input
-						className='bg-inherit placeholder:text-darkBlue dark:bg-inherit text-darkBlue dark:text-white dark:placeholder-white focus:outline-none w-[80%] mr-4 ml-2'
+						className='bg-inherit placeholder:text-darkBlue placeholder:opacity-75 dark:bg-inherit text-darkBlue dark:text-white dark:placeholder-white focus:outline-none w-[80%] mr-4 ml-2'
 						type='search'
 						value={userName}
 						onChange={(e) => setUserName(e.target.value)}
 						placeholder='GitHub Username…'
 					/>
+					{error && (
+						<p className='absolute right-[100px] text-[0.75rem] text-red-500 mr-2'>
+							{error}
+						</p>
+					)}
 					<Button
 						className='bg-lightBlue hover:bg-hoverBtn text-white text-[14px] py-2 px-4 rounded-xl my-2'
 						onPress={handleButtonClick}
@@ -60,12 +65,12 @@ const MainApp = () => {
 						Search
 					</Button>
 				</SearchField>
-				{error && <p className='pt-2 text-[0.75rem] text-red-500 mr-2'>{error}</p>}
+				{/* {error && <p className='pt-2 text-[0.75rem] text-red-500 mr-2'>{error}</p>} */}
 			</div>
 
 			{user && (
-				<div className='xl:min-w-full'>
-					<div className='card px-6 md:px-10 flex flex-col rounded-2xl border-none bg-whiteGray dark:bg-navyBlue text-darkBlue dark:text-white mb-20 md:mb-[236px] shadow-primaryShadow dark:shadow-none xl:mx-[355px] '>
+				<div className='min-w-full'>
+					<div className='card px-6 md:px-10 flex flex-col rounded-2xl border-none bg-whiteGray dark:bg-navyBlue text-darkBlue dark:text-white mb-20 md:mb-[236px] shadow-primaryShadow dark:shadow-none mx-6 md:mx-[97px] lg:mx-[355px] '>
 						<div className='card-body pb-12 px-0 pt-8 md:pt-10 md:pb-10'>
 							<div className='flex flex-row gap-4 md:gap-5 items-center'>
 								<div className='avatar'>
@@ -96,16 +101,16 @@ const MainApp = () => {
 							</div>
 
 							{user.bio !== null ? (
-								<p className='text-[13px] md:text-[15px] mt-8 leading-loose tracking-normal'>
+								<p className='text-[13px] md:text-[15px] mt-8 leading-loose tracking-normal lg:ml-[135px]'>
 									{user.bio}
 								</p>
 							) : (
-								<p className='text-[13px] mt-8 leading-loose tracking-normal opacity-50'>
+								<p className='text-[13px] mt-8 leading-loose tracking-normal opacity-50 lg:ml-[202px]'>
 									This profile has no bio
 								</p>
 							)}
 
-							<div className='flex flex-row justify-center rounded-lg bg-lightGray dark:bg-black mt-6 py-4'>
+							<div className='flex flex-row justify-center rounded-lg bg-lightGray dark:bg-black mt-6 py-4 lg:ml-[135px]'>
 								<ul className='flex flex-row justify-center md:justify-between gap-6 text-center min-w-full md:pl-8 md:pr-[6rem]'>
 									<li className='flex flex-col'>
 										<p>Repos</p>
@@ -122,7 +127,7 @@ const MainApp = () => {
 								</ul>
 							</div>
 
-							<footer className='card-footer-container mt-6 flex flex-col md:grid md:grid-cols-2 gap-4'>
+							<footer className='card-footer-container mt-6 flex flex-col md:grid md:grid-cols-2 gap-4 lg:ml-[135px]'>
 								{user.location !== null ? (
 									<div className='flex flex-row gap-4 items-center w-full'>
 										<svg
